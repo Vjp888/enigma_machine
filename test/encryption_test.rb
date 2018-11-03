@@ -12,6 +12,7 @@ class EncryptionTest < MiniTest::Test
     encrypt = Encryption.new("Encrypt Me", 12345, Time.now)
     offset = [12,23,34,45]
 
-    assert_equal offset, encrypt.create_offset
+    assert_equal offset, encrypt.create_rotation_gourps
+    assert_equal 4, encrypt.create_rotation_gourps.length
   end
 end
