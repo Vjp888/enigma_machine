@@ -20,6 +20,6 @@ class EncryptionTest < MiniTest::Test
     encrypt = Encryption.new("Encrypt Me", "12345", "251218")
     offset = [3, 5, 2, 4]
     assert_equal offset, encrypt.create_offsets
-    assert_equal 4, encrypt.length
+    assert_equal 4, encrypt.length 
   end
 end
