@@ -20,6 +20,13 @@ class EncryptionTest < MiniTest::Test
     encrypt = Encryption.new("Encrypt Me", "12345", "251218")
     offset = [3, 5, 2, 4]
     assert_equal offset, encrypt.create_offsets
-    assert_equal 4, encrypt.length 
+    assert_equal 4, encrypt.length
+  end
+
+  def test_it_can_merge_offsets_into_rotation_groups
+    encrypt = Encryption.new("Encrypt Me", "12345", "251218")
+    complete_offset = [15, 28, 36, 49]
+
+    assert_equal complete_offset, encrypt.create_encryption_key
   end
 end
