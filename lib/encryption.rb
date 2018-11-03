@@ -18,4 +18,10 @@ class Encryption
     offset.collect{|num| num.to_i}
   end
 
+  def create_encryption_key
+    create_rotation_gourps.zip(create_offsets).map do |key|
+      key.sum
+    end
+  end
+
 end
