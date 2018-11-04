@@ -45,5 +45,14 @@ class EncryptionTest < MiniTest::Test
     assert_equal "110318", encrypt.date
   end
 
+  def test_it_can_encrypt_message
+    encrypt = Encryption.new("hello", "12345", "251218")
+
+    assert_equal "wfugc", encrypt.encrypt[:encryption]
+    assert_equal "12345", encrypt.encrypt[:key]
+    assert_equal "251218", encrypt.encrypt[:date]
+  end
+
+
 
 end
