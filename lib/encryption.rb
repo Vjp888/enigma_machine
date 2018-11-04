@@ -1,9 +1,20 @@
 class Encryption
-
-  def initialize(message, key, date)
+  attr_reader :key
+  def initialize(message, key = rand(1..99999).to_s, date)
     @message = message
-    @key = key
+    @key = check_key(key)
     @date = date
+  end
+
+  def check_key(key)
+    loop do
+      if key.length < 5
+        key.insert(0, '0')
+      else
+        break
+      end
+    end
+    key
   end
 
   def create_rotation_gourps
@@ -19,7 +30,7 @@ class Encryption
   end
 
   def create_encryption_key
-    (create_rotation_gourps.zip(create_offsets).map do |key|
+    create_rotation_gourps.zip(create_offsets).map do |key|
       key.sum
     end
   end
