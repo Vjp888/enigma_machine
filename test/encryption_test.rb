@@ -29,4 +29,19 @@ class EncryptionTest < MiniTest::Test
 
     assert_equal complete_offset, encrypt.create_encryption_key
   end
+
+  def test_key_can_be_padded_if_short
+    encrypt = Encryption.new("Encrypt Me", "123", "251218")
+
+    assert_equal "00123", encrypt.key
+  end
+
+  def test_time_will_be_generated_if_blank
+    encrypt = Encryption.new("Encrypt Me", "12345")
+
+    assert_instance_of Encryption, encrypt
+    assert_equal "110318", encrypt.date
+  end
+
+
 end

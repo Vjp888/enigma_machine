@@ -19,7 +19,7 @@ class Encryption
   end
 
   def create_encryption_key
-    create_rotation_gourps.zip(create_offsets).map do |key|
+    (create_rotation_gourps.zip(create_offsets).map do |key|
       key.sum
     end
   end
