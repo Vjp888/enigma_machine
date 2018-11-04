@@ -48,7 +48,7 @@ class EncryptionTest < MiniTest::Test
   def test_it_can_encrypt_message
     encrypt = Encryption.new("hello", "12345", "251218")
 
-    assert_equal "tatc ", encrypt.encrypt[:encryption]
+    assert_equal "wfugc", encrypt.encrypt[:encryption]
     assert_equal "12345", encrypt.encrypt[:key]
     assert_equal "251218", encrypt.encrypt[:date]
   end
