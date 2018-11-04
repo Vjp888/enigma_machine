@@ -1,9 +1,18 @@
+require 'time'
 class Encryption
-  attr_reader :key
-  def initialize(message, key = rand(1..99999).to_s, date)
+  attr_reader :key, :date
+  def initialize(message, key = rand(1..99999).to_s, date = Time.now)
     @message = message
     @key = check_key(key)
-    @date = date
+    @date = check_date(date)
+  end
+
+  def check_date(date)
+    if date.class == Time
+      date.strftime("%m%d%y")
+    else
+      date
+    end
   end
 
   def check_key(key)
