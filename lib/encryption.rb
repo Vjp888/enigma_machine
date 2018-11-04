@@ -16,12 +16,8 @@ class Encryption
   end
 
   def check_key(key)
-    loop do
-      if key.length < 5
-        key.insert(0, '0')
-      else
-        break
-      end
+    until key.length == 5
+      key.insert(0, '0')
     end
     key
   end
