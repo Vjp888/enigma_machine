@@ -32,4 +32,12 @@ module Cryptography
       key.sum
     end
   end
+
+  def char_num(letter)
+    @char_map.find_index("#{letter}")
+  end
+
+  def key_rotation(position)
+    @char_map.rotate(crypto_key[position])
+  end
 end
