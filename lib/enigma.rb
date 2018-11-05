@@ -5,7 +5,7 @@ class Enigma
     encrypt.encrypt
   end
 
-  def decrypt(ciphertext, key, date)
+  def decrypt(ciphertext, key, date = Time.now)
     decrypt = Decryption.new(ciphertext, key, date)
     decrypt.decrypt
   end
