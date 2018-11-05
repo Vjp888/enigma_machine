@@ -1,11 +1,20 @@
 require 'time'
 
 class Decryption
-  def initialize(ciphertext, key, date)
+  attr_reader :date
+  def initialize(ciphertext, key, date = Time.now)
     @ciphertext = ciphertext
     @key = key
-    @date = date
+    @date = check_date(date)
     @char_map = ("a".."z").to_a << " "
+  end
+
+  def check_date(date)
+    if date.class == Time
+      date.strftime("%m%d%y")
+    else
+      date
+    end
   end
 
   def create_rotation_gourps
