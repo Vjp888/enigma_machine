@@ -12,4 +12,10 @@ class Decryption
     [(split[0] + split[1]).to_i, (split[1] + split[2]).to_i,
     (split[2] + split[3]).to_i, (split[3] + split[4]).to_i]
   end
+
+  def create_offsets
+    date_square = @date.to_i ** 2
+    offset = (date_square % 10000).to_s.split(//)
+    offset.collect{|num| num.to_i}
+  end
 end
