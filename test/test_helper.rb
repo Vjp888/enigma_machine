@@ -6,6 +6,7 @@ require 'minitest/pride'
 require 'time'
 require 'mocha/minitest'
 
+require_relative '../lib/cryptography'
 require_relative '../lib/decryption'
 require_relative '../lib/encryption'
 require_relative '../lib/enigma'

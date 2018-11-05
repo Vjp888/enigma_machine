@@ -1,20 +1,15 @@
 require 'time'
 
 class Decryption
+
+  include Cryptography
+
   attr_reader :date, :key
   def initialize(ciphertext, key = rand(1..99999), date = Time.now)
     @ciphertext = ciphertext
     @key = check_key(key)
     @date = check_date(date)
     @char_map = ("a".."z").to_a << " "
-  end
-
-  def check_date(date)
-    if date.class == Time
-      date.strftime("%m%d%y")
-    else
-      date
-    end
   end
 
   def check_key(key)
