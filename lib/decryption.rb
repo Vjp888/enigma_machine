@@ -2,7 +2,7 @@ require 'time'
 
 class Decryption
   attr_reader :date, :key
-  def initialize(ciphertext, key, date = Time.now)
+  def initialize(ciphertext, key = rand(1..99999), date = Time.now)
     @ciphertext = ciphertext
     @key = check_key(key)
     @date = check_date(date)
