@@ -28,7 +28,7 @@ class DecryptionTest < MiniTest::Test
     decrypt = Decryption.new("Message", "12345", "251218")
     complete_offset = [15, 28, 36, 49]
 
-    assert_equal complete_offset, decrypt.decryption_key
+    assert_equal complete_offset, decrypt.crypto_key
   end
 
   def test_it_can_decrypt_a_coded_message

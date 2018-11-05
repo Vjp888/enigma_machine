@@ -12,18 +12,12 @@ class Decryption
     @char_map = ("a".."z").to_a << " "
   end
 
-  def decryption_key
-    create_rotation_gourps.zip(create_offsets).map do |key|
-      key.sum
-    end
-  end
-
   def char_num(letter)
     @char_map.find_index("#{letter}")
   end
 
   def key_rotation(position)
-    @char_map.rotate(decryption_key[position])
+    @char_map.rotate(crypto_key[position])
   end
 
   def decrypt
