@@ -17,11 +17,18 @@ class DecryptionTest < MiniTest::Test
   end
 
   def test_it_can_create_rotation_group_offsets
-    decrypt = Decryption.new("Encrypt Me", "12345", "251218")
+    decrypt = Decryption.new("Message", "12345", "251218")
     offset = [3, 5, 2, 4]
 
     assert_equal offset, decrypt.create_offsets
     assert_equal 4, decrypt.create_offsets.length
+  end
+
+  def test_it_can_merge_offsets_into_rotation_groups
+    decrypt = Decryption.new("Message", "12345", "251218")
+    complete_offset = [15, 28, 36, 49]
+
+    assert_equal complete_offset, decrypt.decryption_key
   end
 
 
