@@ -5,6 +5,7 @@ class Decryption
     @ciphertext = ciphertext
     @key = key
     @date = date
+    @char_map = ("a".."z").to_a << " "
   end
 
   def create_rotation_gourps
@@ -23,5 +24,20 @@ class Decryption
     create_rotation_gourps.zip(create_offsets).map do |key|
       key.sum
     end
+  end
+
+  def decrypt
+    decrypted_message = []
+    key_pos = 0
+    @ciphertext.downcase.split(//).map do |letter|
+      char_num = @char_map.rotate(decryption_key[key_pos]).find_index("#{letter}")
+      decrypt_letter = @char_map[char_num]
+      decrypted_message << decrypt_letter
+      key_pos += 1
+      if key_pos == 4
+        key_pos = 0
+      end
+    end
+    {decryption: decrypted_message.join, key: @key, date: @date}
   end
 end

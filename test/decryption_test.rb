@@ -32,15 +32,10 @@ class DecryptionTest < MiniTest::Test
   end
 
   def test_it_can_decrypt_a_coded_message
-    def test_it_can_encrypt_message
-      decrypt = Decryption.new("wfugc", "12345", "251218")
+    decrypt = Decryption.new("wfugc", "12345", "251218")
 
-      assert_equal "hello", decrypt.decrypt[:decryption]
-      assert_equal "12345", decrypt.decrypt[:key]
-      assert_equal "251218", decrypt.decrypt[:date]
-    end
-
-
-
-
+    assert_equal "hello", decrypt.decrypt[:decryption]
+    assert_equal "12345", decrypt.decrypt[:key]
+    assert_equal "251218", decrypt.decrypt[:date]
+  end
 end
