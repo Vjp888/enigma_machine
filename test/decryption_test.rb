@@ -38,4 +38,21 @@ class DecryptionTest < MiniTest::Test
     assert_equal "12345", decrypt.decrypt[:key]
     assert_equal "251218", decrypt.decrypt[:date]
   end
+
+  def test_key_can_be_padded_if_short
+    decrypt = Decryption.new("Encrypt Me", "123", "251218")
+
+    assert_equal "00123", decrypt.key
+  end
+
+  def test_time_will_be_generated_if_blank
+    # I added this time object with a specific date to make sure the 'check_time'
+    #method works with a time.now statement without worring about the date changing
+    decrypt = Decryption.new("Encrypt Me", "12345", Time.new(2018, 11, 03))
+
+    assert_instance_of DEcryption, decrypt
+    assert_equal "110318", decrypt.date
+  end
+
+
 end
