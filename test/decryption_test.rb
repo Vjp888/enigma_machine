@@ -48,9 +48,9 @@ class DecryptionTest < MiniTest::Test
   def test_time_will_be_generated_if_blank
     # I added this time object with a specific date to make sure the 'check_time'
     #method works with a time.now statement without worring about the date changing
-    decrypt = Decryption.new("Encrypt Me", "12345", Time.new(2018, 11, 03))
+    decrypt = Decryption.new("hello", "12345", Time.new(2018, 11, 03))
 
-    assert_instance_of DEcryption, decrypt
+    assert_instance_of Decryption, decrypt
     assert_equal "110318", decrypt.date
   end
 
