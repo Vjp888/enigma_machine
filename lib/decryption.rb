@@ -18,4 +18,10 @@ class Decryption
     offset = (date_square % 10000).to_s.split(//)
     offset.collect{|num| num.to_i}
   end
+
+  def decryption_key
+    create_rotation_gourps.zip(create_offsets).map do |key|
+      key.sum
+    end
+  end
 end
