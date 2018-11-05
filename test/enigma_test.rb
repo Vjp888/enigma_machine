@@ -16,4 +16,13 @@ class EnigmaTest < MiniTest::Test
     assert_equal "12345", encrypt[:key]
     assert_equal "251218", encrypt[:date]
   end
+
+  def test_it_can_decrypt_a_coded_message
+    enigma = Enigma.new
+    decrypt = enigma.decrypt("wfugc", "12345", "251218")
+
+    assert_equal "hello", decrypt[:encryption]
+    assert_equal "12345", decrypt[:key]
+    assert_equal "251218", decrypt[:date]
+  end
 end
