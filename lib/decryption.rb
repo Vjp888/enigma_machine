@@ -12,12 +12,6 @@ class Decryption
     @char_map = ("a".."z").to_a << " "
   end
 
-  def create_offsets
-    date_square = @date.to_i ** 2
-    offset = (date_square % 10000).to_s.split(//)
-    offset.collect{|num| num.to_i}
-  end
-
   def decryption_key
     create_rotation_gourps.zip(create_offsets).map do |key|
       key.sum
