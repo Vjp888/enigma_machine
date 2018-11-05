@@ -42,18 +42,20 @@ class Decryption
     end
   end
 
+  def char_num(letter)
+    @char_map.find_index("#{letter}")
+  end
+
+  def key_rotation(position)
+    @char_map.rotate(decryption_key[position])
+  end
+
   def decrypt
-    decrypted_message = []
-    key_pos = 0
-    @ciphertext.downcase.split(//).map do |letter|
-      char_num = @char_map.rotate(decryption_key[key_pos]).find_index("#{letter}")
-      decrypt_letter = @char_map[char_num]
-      decrypted_message << decrypt_letter
-      key_pos += 1
-      if key_pos == 4
-        key_pos = 0
-      end
+    decrypted = @ciphertext.downcase.split(//).map.with_index do |letter, index|
+      (key_rotation((index%4))[char_num(letter)])
+      char_index = key_rotation(index%4).find_index("#{letter}")
+      @char_map[char_index]
     end
-    {decryption: decrypted_message.join, key: @key, date: @date}
+    {decryption: decrypted.join, key: @key, date: @date}
   end
 end
