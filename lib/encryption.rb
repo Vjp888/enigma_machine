@@ -5,6 +5,7 @@ class Encryption
     @message = message
     @key = check_key(key)
     @date = check_date(date)
+    @char_map = ("a".."z").to_a << " "
   end
 
   def check_date(date)
@@ -34,7 +35,7 @@ class Encryption
     offset.collect{|num| num.to_i}
   end
 
-  def create_encryption_key
+  def encryption_key
     create_rotation_gourps.zip(create_offsets).map do |key|
       key.sum
     end
@@ -42,12 +43,10 @@ class Encryption
 
   def encrypt
     encrypted_message = []
-    char_map = ("a".."z").to_a << " "
-    encrypt_key = create_encryption_key
     key_pos = 0
     @message.downcase.split(//).map do |letter|
-      char_num = char_map.find_index("#{letter}")
-      encrypt_letter = char_map.rotate(encrypt_key[key_pos])[char_num]
+      char_num = @char_map.find_index("#{letter}")
+      encrypt_letter = @char_map.rotate(encryption_key[key_pos])[char_num]
       encrypted_message << encrypt_letter
       key_pos += 1
       if key_pos == 4
@@ -57,16 +56,3 @@ class Encryption
     {encryption: encrypted_message.join, key: @key, date: @date}
   end
 end
-    #   if key_pos <=3
-    #     char_num = char_map.find_index("#{letter}")
-    #     encrypt_letter = char_map.rotate(encrypt_key[key_pos])[char_num]
-    #     encrypted_message << encrypt_letter
-    #     key_pos += 1
-    #   else
-    #     key_pos = 0
-    #     char_num = char_map.find_index("#{letter}")
-    #     encrypt_letter = char_map.rotate(encrypt_key[key_pos])[char_num]
-    #     encrypted_message << encrypt_letter
-    #     key_pos += 1
-    #   end
-    # end
