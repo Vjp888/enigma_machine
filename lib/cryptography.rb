@@ -7,4 +7,11 @@ module Cryptography
       date
     end
   end
+
+  def check_key(key)
+    until key.length == 5
+      key.insert(0, '0')
+    end
+    key
+  end
 end

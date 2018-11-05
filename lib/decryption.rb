@@ -12,13 +12,6 @@ class Decryption
     @char_map = ("a".."z").to_a << " "
   end
 
-  def check_key(key)
-    until key.length == 5
-      key.insert(0, '0')
-    end
-    key
-  end
-
   def create_rotation_gourps
     split = @key.split(//)
     [(split[0] + split[1]).to_i, (split[1] + split[2]).to_i,
