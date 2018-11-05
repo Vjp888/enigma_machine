@@ -21,7 +21,7 @@ class EnigmaTest < MiniTest::Test
     enigma = Enigma.new
     decrypt = enigma.decrypt("wfugc", "12345", "251218")
 
-    assert_equal "hello", decrypt[:encryption]
+    assert_equal "hello", decrypt[:decryption]
     assert_equal "12345", decrypt[:key]
     assert_equal "251218", decrypt[:date]
   end
