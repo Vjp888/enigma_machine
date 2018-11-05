@@ -49,8 +49,7 @@ class Encryption
     encrypted_message = []
     key_pos = 0
     @message.downcase.split(//).map do |letter|
-      encrypt_letter = @char_map.rotate(encryption_key[key_pos])[char_num(letter)]
-      encrypted_message << encrypt_letter
+      encrypted_message << (@char_map.rotate(encryption_key[key_pos])[char_num(letter)])
       key_pos += 1
       key_pos = 0 if key_pos == 4
     end
