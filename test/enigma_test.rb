@@ -30,12 +30,23 @@ class EnigmaTest < MiniTest::Test
     enigma = Enigma.new
     encrypt = enigma.encrypt("hello")
 
-
     assert String, encrypt[:encryption]
     assert String, encrypt[:key]
     assert String, encrypt[:date]
     assert_equal 5, encrypt[:encryption].length
     assert_equal 5, encrypt[:key].length
     assert_equal 6, encrypt[:date].length
+  end
+
+  def test_it_can_decrypt_without_date
+    enigma = Enigma.new
+    decrypt = enigma.decrypt("wfugc", "12345")
+
+    assert String, decrypt[:decryption]
+    assert String, decrypt[:key]
+    assert String, decrypt[:date]
+    assert_equal 5, decrypt[:decryption].length
+    assert_equal 5, decrypt[:key].length
+    assert_equal 6, decrypt[:date].length
   end
 end
