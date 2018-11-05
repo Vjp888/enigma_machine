@@ -45,14 +45,14 @@ class Encryption
     @char_map.find_index("#{letter}")
   end
 
+  def key_rotation(position)
+    @char_map.rotate(encryption_key[position])
+  end
+
   def encrypt
-    encrypted_message = []
-    key_pos = 0
-    @message.downcase.split(//).map do |letter|
-      encrypted_message << (@char_map.rotate(encryption_key[key_pos])[char_num(letter)])
-      key_pos += 1
-      key_pos = 0 if key_pos == 4
+    encrypted = @message.downcase.split(//).map.with_index do |letter, index|
+      (key_rotation((index%4))[char_num(letter)])
     end
-      {encryption: encrypted_message.join, key: @key, date: @date}
+      {encryption: encrypted.join, key: @key, date: @date}
   end
 end
