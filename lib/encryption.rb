@@ -1,7 +1,7 @@
 require 'time'
 class Encryption
   attr_reader :key, :date
-  def initialize(message, key = rand(1..99999).to_s, date = Time.now)
+  def initialize(message, key, date)
     @message = message
     @key = check_key(key)
     @date = check_date(date)
@@ -41,18 +41,18 @@ class Encryption
     end
   end
 
+  def char_num(letter)
+    @char_map.find_index("#{letter}")
+  end
+
+  def key_rotation(position)
+    @char_map.rotate(encryption_key[position])
+  end
+
   def encrypt
-    encrypted_message = []
-    key_pos = 0
-    @message.downcase.split(//).map do |letter|
-      char_num = @char_map.find_index("#{letter}")
-      encrypt_letter = @char_map.rotate(encryption_key[key_pos])[char_num]
-      encrypted_message << encrypt_letter
-      key_pos += 1
-      if key_pos == 4
-        key_pos = 0
-      end
+    encrypted = @message.downcase.split(//).map.with_index do |letter, index|
+      (key_rotation((index%4))[char_num(letter)])
     end
-    {encryption: encrypted_message.join, key: @key, date: @date}
+      {encryption: encrypted.join, key: @key, date: @date}
   end
 end
