@@ -1,6 +1,6 @@
 class Enigma
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = rand(1..99999).to_s, date = Time.now)
     encrypt = Encryption.new(message, key, date)
     encrypt.encrypt
   end

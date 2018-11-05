@@ -25,4 +25,17 @@ class EnigmaTest < MiniTest::Test
     assert_equal "12345", decrypt[:key]
     assert_equal "251218", decrypt[:date]
   end
+
+  def test_it_can_encrypt_without_date_and_key
+    enigma = Enigma.new
+    encrypt = enigma.encrypt("hello")
+
+
+    assert String, encrypt[:encryption]
+    assert String, encrypt[:key]
+    assert String, encrypt[:date]
+    assert_equal 5, encrypt[:encryption].length
+    assert_equal 5, encrypt[:key].length
+    assert_equal 6, encrypt[:date].length
+  end
 end
