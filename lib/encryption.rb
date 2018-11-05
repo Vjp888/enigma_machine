@@ -52,10 +52,8 @@ class Encryption
       encrypt_letter = @char_map.rotate(encryption_key[key_pos])[char_num(letter)]
       encrypted_message << encrypt_letter
       key_pos += 1
-      if key_pos == 4
-        key_pos = 0
-      end
+      key_pos = 0 if key_pos == 4
     end
-    {encryption: encrypted_message.join, key: @key, date: @date}
+      {encryption: encrypted_message.join, key: @key, date: @date}
   end
 end
