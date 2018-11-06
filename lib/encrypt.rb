@@ -3,8 +3,6 @@ require_relative '../lib/enigma'
 require 'pry'
 
 enigma = Enigma.new
-# enigma.encrypt(intake)
-
 
 handle = File.open(ARGV[0], "r")
 

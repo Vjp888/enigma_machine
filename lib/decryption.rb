@@ -15,9 +15,13 @@ class Decryption
 
   def decrypt
     decrypted = @ciphertext.downcase.split(//).map.with_index do |letter, index|
-      (key_rotation((index%4))[char_num(letter)])
-      char_index = key_rotation(index%4).find_index("#{letter}")
-      @char_map[char_index]
+      if char_num(letter) == nil
+        letter
+      else
+        (key_rotation((index%4))[char_num(letter)])
+        char_index = key_rotation(index%4).find_index("#{letter}")
+        @char_map[char_index]
+      end
     end
     {decryption: decrypted.join, key: @key, date: @date}
   end
