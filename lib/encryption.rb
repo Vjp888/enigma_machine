@@ -1,19 +1,14 @@
 require 'time'
 class Encryption
+
+  include Cryptography
+
   attr_reader :key, :date
   def initialize(message, key, date)
     @message = message
     @key = check_key(key)
     @date = check_date(date)
     @char_map = ("a".."z").to_a << " "
-  end
-
-  def check_date(date)
-    if date.class == Time
-      date.strftime("%m%d%y")
-    else
-      date
-    end
   end
 
   def check_key(key)

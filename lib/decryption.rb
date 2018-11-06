@@ -12,14 +12,6 @@ class Decryption
     @char_map = ("a".."z").to_a << " "
   end
 
-  # def char_num(letter)
-  #   @char_map.find_index("#{letter}")
-  # end
-  #
-  # def key_rotation(position)
-  #   @char_map.rotate(crypto_key[position])
-  # end
-
   def decrypt
     decrypted = @ciphertext.downcase.split(//).map.with_index do |letter, index|
       (key_rotation((index%4))[char_num(letter)])
