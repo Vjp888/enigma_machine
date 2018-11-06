@@ -27,7 +27,7 @@ class EncryptionTest < MiniTest::Test
     encrypt = Encryption.new("Encrypt Me", "12345", "251218")
     complete_offset = [15, 28, 36, 49]
 
-    assert_equal complete_offset, encrypt.encryption_key
+    assert_equal complete_offset, encrypt.crypto_key
   end
 
   def test_key_can_be_padded_if_short
