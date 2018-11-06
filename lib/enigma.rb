@@ -1,3 +1,5 @@
+require_relative '../lib/encryption'
+require_relative '../lib/decryption'
 class Enigma
 
   def encrypt(message, key = rand(1..99999).to_s, date = Time.now)
